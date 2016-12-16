@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver lts-7.13 --install-ghc runghc --package attoparsec
+-- stack --resolver lts-7.13 --install-ghc runghc --package attoparsec --package containers
 
 import qualified Data.Text.IO as Text
 import qualified Data.List as List
