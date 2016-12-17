@@ -66,7 +66,7 @@ summarizeWith approach input =
 
 main = do
 
-    input <- fmap List.lines (readFile "day6input.txt")
+    input <- fmap List.lines (readFile "day06input.txt")
 
     putStrLn "Star 1:"
     putStrLn (summarizeWith pickMostFrequent input)

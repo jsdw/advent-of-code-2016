@@ -161,7 +161,7 @@ main =
         runLines pad cmds '5'
 
   in do
-    cmds <- fmap parseCmds (readFile "day2input.txt")
+    cmds <- fmap parseCmds (readFile "day02input.txt")
 
     putStrLn "Star 1:"
     print $ star1 cmds

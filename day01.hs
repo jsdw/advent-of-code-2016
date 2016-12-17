@@ -137,7 +137,7 @@ toDistance (x,y) = abs x + abs y
 --
 main = do
 
-    input <- Text.readFile "day1input.txt"
+    input <- Text.readFile "day01input.txt"
 
     putStrLn "Star 1:"
     print $ toDistance $ head $ toCoords $ toCommands input

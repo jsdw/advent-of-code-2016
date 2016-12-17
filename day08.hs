@@ -101,7 +101,7 @@ commandParser = (rectParser <|> shiftRowParser <|> shiftColParser) `sepBy` endOf
 
 loadInput :: IO [Cmd]
 loadInput = do
-    input <- Text.readFile "day8input.txt"
+    input <- Text.readFile "day08input.txt"
     return $ case parseOnly commandParser input of
         Left _ -> []
         Right cmds -> cmds

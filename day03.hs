@@ -91,10 +91,10 @@ main = do
 
     -- Gold Star:
     putStrLn "Star 1:"
-    triangles <- loadTriangles "day3input.txt" parseTriangles1
+    triangles <- loadTriangles "day03input.txt" parseTriangles1
     print $ length $ filter sumOfSides triangles
 
     -- Silver Star:
     putStrLn "Star 2:"
-    triangles <- loadTriangles "day3input.txt" parseTriangles2
+    triangles <- loadTriangles "day03input.txt" parseTriangles2
     print $ length $ filter sumOfSides triangles

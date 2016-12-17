@@ -63,7 +63,7 @@ parseRooms =
 
 loadRooms :: IO [Room]
 loadRooms = do
-    input <- Text.readFile "day4input.txt"
+    input <- Text.readFile "day04input.txt"
     return (case parseOnly parseRooms input of
         Left _ -> []
         Right rooms -> rooms)

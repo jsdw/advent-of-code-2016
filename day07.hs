@@ -28,7 +28,7 @@ parseIPs = parseIp `sepBy` endOfLine
 
 loadInput :: IO [IP]
 loadInput = do
-    input <- Text.readFile "day7input.txt"
+    input <- Text.readFile "day07input.txt"
     return $ case parseOnly parseIPs input of
         Left _ -> []
         Right ips -> ips

@@ -100,7 +100,7 @@ compressedParser2 =
 main :: IO ()
 main = do
 
-    input <- Text.readFile "day9input.txt"
+    input <- Text.readFile "day09input.txt"
 
     putStrLn "Star 1:"
     let decompressed = case parseOnly compressedParser input of
