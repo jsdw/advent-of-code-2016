@@ -8,7 +8,6 @@ import qualified Data.Text.IO as Text
 import qualified Data.Text as Text
 import qualified Data.Vector as Vector
 import qualified Data.Map as Map
-import qualified Data.List as List
 import Data.Map.Strict (Map)
 import Data.Vector (Vector, (!?))
 import Data.Text (Text)
