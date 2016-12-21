@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver lts-7.13 --install-ghc runghc --package attoparsec --package vector --package containers --package mtl
+-- stack --resolver lts-7.13 --install-ghc runghc --package containers
 
 {-# LANGUAGE OverloadedStrings #-}
 
