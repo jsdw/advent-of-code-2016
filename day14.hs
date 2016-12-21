@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver lts-7.13 --install-ghc runghc --package containers --package pureMD5
+-- stack --resolver lts-7.13 --install-ghc runghc --package bytestring --package pureMD5
 
 {-
 
