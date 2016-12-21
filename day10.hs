@@ -35,7 +35,6 @@ Based on your instructions, what is the number of the bot that is responsible fo
 What do you get if you multiply together the values of one chip in each of outputs 0, 1, and 2?
 -}
 
-import Data.Attoparsec.Text as Parser
 import qualified Data.Text.IO as Text
 import qualified Data.Text as Text
 import qualified Data.List as List
@@ -48,6 +47,7 @@ import Data.Map.Strict (Map)
 import Data.Ord (Down(..),comparing)
 import Data.Monoid ((<>))
 import Control.Applicative ((<|>))
+import Data.Attoparsec.Text as Parser
 
 -- 1. parse input into commands
 --

@@ -65,7 +65,7 @@ Your puzzle input is still 01000100010010111.
 
 -}
 
-import qualified Data.List as List 
+import qualified Data.List as List
 import Debug.Trace
 
 data Bit = O | I deriving (Show, Eq)
@@ -86,7 +86,7 @@ flipBit I = O
 randomData :: Bits -> Bits
 randomData bits = bits ++ next bits
   where
-    next bits = tail bits ++ next (bits ++ tail bits) 
+    next bits = tail bits ++ next (bits ++ tail bits)
     tail bits = O : fmap flipBit (List.reverse bits)
 
 generateChecksum :: Bits -> Bits
@@ -98,10 +98,10 @@ generateChecksum bits = loop bits
     step bits = case bits of
       (a:b:rest) -> (if a == b then I else O) : step rest
       _ -> []
-  
+
 main :: IO ()
-main = do 
-  
+main = do
+
     putStrLn "Star 1:"
     print $ showBits $ generateChecksum $ take 272 $ randomData input
 
