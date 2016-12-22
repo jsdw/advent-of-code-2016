@@ -1,7 +1,7 @@
 #!/usr/bin/env stack
--- stack --resolver lts-7.13 --install-ghc runghc --package base --package attoparsec --package text --package vector --package containers -- -hide-all-packages
+-- stack --resolver lts-7.13 --install-ghc runghc --package base --package vector --package containers -- -hide-all-packages
 
-{-# LANGUAGE OverloadedStrings, BangPatterns #-}
+{-# LANGUAGE BangPatterns #-}
 
 {-
 
@@ -123,19 +123,12 @@ What is the minimum number of steps required to bring all of the objects, includ
 
 -}
 
-import qualified Data.Text.IO as Text
-import qualified Data.Text as Text
 import qualified Data.Vector as Vector
 import qualified Data.List as List
 import qualified Data.Set as Set
 import qualified Data.Maybe as Maybe
 import Data.Vector (Vector, (//), (!))
-import Data.Text (Text)
 import Data.Word (Word8)
-import Control.Applicative ((<|>))
-import Data.Attoparsec.Text as Parser
-import Data.Ord (comparing, Down(..))
-import Debug.Trace
 
 -- 1. describe the input and game state
 --
