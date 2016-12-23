@@ -66,8 +66,7 @@ How many safe tiles are there in a total of 400000 rows?
 -}
 
 import qualified Data.Vector as Vector
-import Data.Vector (Vector, (!), foldl')
-import qualified Data.List as List
+import Data.Vector (Vector, (!))
 import Data.Foldable (foldl')
 
 input = Vector.fromList
@@ -97,7 +96,7 @@ rows panels = panels : rows next
 main :: IO ()
 main = do
 
-    let countSafe = List.foldl' (\n row -> Vector.foldl' (\r p -> if p == Safe then r+1 else r) n row) 0
+    let countSafe = foldl' (\n row -> foldl' (\r p -> if p == Safe then r+1 else r) n row) 0
 
     putStrLn "Star 1:"
     print $ countSafe $ take 40 $ rows input
