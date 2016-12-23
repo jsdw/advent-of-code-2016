@@ -10,8 +10,6 @@
    -hide-all-packages
 -}
 
-{-# LANGUAGE BangPatterns #-}
-
 {-
 
 --- Day 17: Two Steps Forward ---
