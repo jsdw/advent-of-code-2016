@@ -26,37 +26,29 @@ loadInput = do
 
 compactRanges :: [Range] -> [Range]
 compactRanges [] = []
-compactRanges rs = List.sort $ loop rs []
+compactRanges rs = loop (List.sortOn fst rs)
   where
-    loop :: [Range] -> [Range] -> [Range]
-    loop [] outRs = outRs
-    loop (r:rs) outRs =
-        let (newR,newRs) = compress r rs []
-        in loop newRs (newR:outRs)
-    compress :: Range -> [Range] -> [Range] -> (Range,[Range])
-    compress r [] newRs = (r, newRs)
-    compress r@(lo1,hi1) (s@(lo2,hi2):ss) newRs =
-        if isOverlap r s
-            then compress (min lo1 lo2, max hi1 hi2) ss newRs
-            else compress r ss (s:newRs)
-    isOverlap :: Range -> Range -> Bool
-    isOverlap (lo1,hi1) (lo2,hi2) =
-        if lo1 <= (hi2+1) && hi1 >= (lo2-1) then True
-        else if lo2 <= (hi1+1) && hi2 >= (lo1-1) then True
-        else False
+    loop [] = []
+    loop (r:[]) = [r]
+    loop ((a1,a2):(b1,b2):rs) =
+      if b1 <= (a2+1) then loop ((a1, max a2 b2):rs) else (a1,a2) : loop ((b1,b2):rs)
 
-isInRanges :: [Range] -> Word32 -> Bool
-isInRanges rs w = List.any (\(lo,hi) -> w >= lo && w <= hi) rs
+getAllSafe :: [Range] -> [Word32]
+getAllSafe rs = loop rs 0
+  where
+    loop [] n = [] -- should never happen
+    loop ((lo,hi):rs) n = newRange ++ nextStep
+      where
+        newRange = if n == lo then [] else [n..lo-1]
+        nextStep = if hi == maxBound then [] else loop rs (hi+1)
 
 main :: IO ()
 main = do
 
-    ranges <- fmap compactRanges loadInput
-
-    print ranges
+    safe <- fmap (getAllSafe . compactRanges) loadInput
 
     putStrLn "Star 1:"
-    print $ head $ filter (not . isInRanges ranges) $ [0..]
+    print $ head safe
 
     putStrLn "Star 2:"
-    print $ length $ filter (not . isInRanges ranges) $ [0..maxBound]
+    print $ length safe
