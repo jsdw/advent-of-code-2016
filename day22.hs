@@ -65,5 +65,21 @@ main = do
 
     putStrLn "Star 1:"
     print $ countViablePairs nodes
-      
+
+    putStrLn "Star 2:"
+    -- did by hand by eyeballing the data; realisations:
+    --
+    -- 1. only place we can move data is into the single "free" space available
+    -- 2. only place we cant "move" the free space is a "wall" (nodes that have
+    --    too much data on to do anything with) running from (4,27) to (32,27)
+    -- 3. free space is behind the wall at (15,29).
+    --
+    -- Thus,
+    -- - we first use one move per square to move the free space around the wall
+    --   and in front of the data (a total of 12+29+28 moves)
+    -- - we use one move to swap data and free space
+    -- - we then repeat until data is at (0,0) (ie 31 times) the steps:
+    --   a) move free space around in front of the data again (4 moves)
+    --   b) swap data with free space.
+    print $ (12+29+28) + 1 + (1+4)*31
       
