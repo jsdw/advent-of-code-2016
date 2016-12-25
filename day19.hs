@@ -33,8 +33,8 @@ star2 :: Int -> Int
 star2 n = loop ((Vector.generate n (+1)), 0)
   where
     loop (as, idx) =
-        if traceShowId (Vector.length as) == 1 then as ! 0
-        else loop $ once as idx
+        if Vector.length as == 1 then as ! 0
+        else loop (once as idx)
     once as n =
         (newVec, if badN < currIdx then currIdx else currIdx+1)
       where
@@ -43,10 +43,25 @@ star2 n = loop ((Vector.generate n (+1)), 0)
         l = Vector.length as
         badN = (currIdx + floor (fromIntegral l / 2)) `mod` l
 
+-- notice a pattern in resulting elf given different numbers of elves, and
+-- exploit that to solve the problem non iteratively
+star2cycle :: Int -> Int
+star2cycle n =
+    if cyclePos >= halfCycleLength
+    then halfCycleLength + (cyclePos - halfCycleLength + 1) * 2
+    else cyclePos+1
+  where
+    cycle = floor (logBase 3 (fromIntegral n - 1))
+    cycle3 = floor $ 3 ^^ cycle
+    halfCycleLength = cycleLength `div` 2
+    cycleLength = cycle3 * 2
+    cycleStart = cycle3 + 1
+    cyclePos = n - cycleStart
+
 main = do
 
     putStrLn "Star 1:"
     print $ star1 3012210
 
     putStrLn "Star 2:"
-    print $ star2 3012210
+    print $ star2cycle 3012210
