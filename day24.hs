@@ -124,8 +124,9 @@ shortestPathBetweenLocations :: Int -> Maybe Int -> Map Int (Map Int Int) -> Int
 shortestPathBetweenLocations start finish graph = minimum $ fmap pathDistance paths
   where
     paths = fmap attachFinish
-        $ filter (\p -> head p == start)
+        $ fmap (start :)
         $ List.permutations
+        $ filter (/= start)
         $ Map.foldlWithKey (\ls l _ -> l:ls) [] graph
     attachFinish = case finish of
         Nothing -> id
